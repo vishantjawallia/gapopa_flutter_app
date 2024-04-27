@@ -21,6 +21,7 @@ class HomeViewModel extends BaseViewModel {
   PagingController<int, Hits> pagingController = PagingController(firstPageKey: 1);
 
   TextEditingController searchController = TextEditingController();
+  ScrollController scrollController = ScrollController();
 
   HomeViewModel() {
     // loadItems();
@@ -71,6 +72,8 @@ class HomeViewModel extends BaseViewModel {
     if (clength == 0 && value.isNotEmpty) {
       page = 1;
       notifyListeners();
+      pagingController.refresh();
+      pagingController.appendPage([], 1);
     }
     try {
       setBusy(true);
