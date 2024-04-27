@@ -8,9 +8,9 @@ jobs:
   build:
     run-on: ubuntu-latest
     
-    setp:
-      - use: actions/checkout@v2 # Only works with v2
+    setps:
+      - uses: actions/checkout@v2 # Only works with v2
       - uses: subosito/flutter-action@vl
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
-          baseHref: /Responsive-Blog-Theme-using-Flutter/
+          baseHref: /gapopa_flutter_app/
