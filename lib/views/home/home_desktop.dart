@@ -35,7 +35,7 @@ class _HomeDesktop extends StatelessWidget {
                       controller: viewModel.searchController,
                       onChanged: viewModel.onSearchChangeses,
                       style: context.textTheme.titleSmall,
-                      buildCounter: viewModel.buildCounter,
+                      // buildCounter: widget.viewModel.buildCounter,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         border: InputBorder.none,

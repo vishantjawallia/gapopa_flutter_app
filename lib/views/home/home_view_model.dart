@@ -24,6 +24,7 @@ class HomeViewModel extends BaseViewModel {
   ScrollController scrollController = ScrollController();
 
   HomeViewModel() {
+    // searchController.addListener(() => onSearchChangeses);
     // loadItems();
   }
   // Add ViewModel specific code here
@@ -60,28 +61,20 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  void onSearchChangeses(String value) async {
+  void onSearchChangeses(value) async {
+    // notifyListeners();
     if (value.isEmpty) {
-      fetchPage(refresh: true);
+      page = 1;
+      pagingController.refresh();
+      pagingController.appendPage([], 1);
     } else {
-      newMethod(value);
+      newMethod(value.toLowerCase());
     }
   }
 
   newMethod(String value) async {
-    if (clength == 0 && value.isNotEmpty) {
-      page = 1;
-      notifyListeners();
-      pagingController.refresh();
-      pagingController.appendPage([], 1);
-    }
     try {
-      setBusy(true);
-
-      await Future.delayed(const Duration(seconds: 1));
       final res = await api.getImages('&q=$value&image_type=photo&page=$page&per_page=$perPage');
-      print('&q=$value&image_type=photo&page=$page&per_page=$perPage');
-      setBusy(false);
       if (res.success!) {
         pagingController.refresh();
         pagingController.appendPage(res.data!.hits!, 0);
@@ -107,8 +100,8 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  Widget? buildCounter(BuildContext context, {required int currentLength, required bool isFocused, required int? maxLength}) {
-    clength = currentLength;
-    notifyListeners();
-  }
+  // Widget? buildCounter(BuildContext context, {required int currentLength, required bool isFocused, required int? maxLength}) {
+  //   clength = currentLength;
+  //   notifyListeners();
+  // }
 }
