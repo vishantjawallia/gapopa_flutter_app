@@ -7,7 +7,6 @@ class _HomeDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var color = Get.isDarkMode ? Colors.white : Colors.black54;
     return Scaffold(
       body: Column(
         children: [
@@ -35,6 +34,7 @@ class _HomeDesktop extends StatelessWidget {
                     child: TextField(
                       onChanged: viewModel.onSearchChangeses,
                       style: context.textTheme.titleSmall,
+                      buildCounter: viewModel.buildCounter,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         border: InputBorder.none,
@@ -75,7 +75,7 @@ class _HomeDesktop extends StatelessWidget {
                   },
                   itemBuilder: (context, item, index) => BounceButton(
                     onPressed: () => Get.toNamed(ImageDetailView.routeName, arguments: item),
-                    child: ImageListTile(key: key, id: item.id, imageUrl: item.largeImageURL, views: item.views, likes: item.likes),
+                    child: ImageListTile(id: item.id, imageUrl: item.largeImageURL, views: item.views, likes: item.likes),
                   ),
                 ),
               ),

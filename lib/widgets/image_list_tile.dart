@@ -8,7 +8,7 @@ class ImageListTile extends StatelessWidget {
   final int? views;
   final int? likes;
   const ImageListTile({
-    required super.key,
+    super.key,
     required this.id,
     required this.imageUrl,
     required this.views,

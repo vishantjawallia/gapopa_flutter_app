@@ -1,0 +1,16 @@
+name: Gh-Pages
+
+on:
+  push:
+    brnach: [ master ]
+
+job:
+  build:
+    run-on: ubuntu-latest
+    
+    setps:
+      - use: actions/checkout@v2 # Only works with v2
+      - uses: subosito/flutter-action@vl
+      - uses: bluefireteam/flutter-gh-pages@v7
+        with:
+          baseHref: /Responsive-Blog-Theme-using-Flutter/

@@ -26,9 +26,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
-      onViewModelReady: (viewModel) {
-
-      },
+      onViewModelReady: (viewModel) {},
       builder: (context, viewModel, child) {
         return ScreenTypeLayout.builder(
           desktop: (_) => _HomeDesktop(viewModel),

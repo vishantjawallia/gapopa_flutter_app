@@ -1,9 +1,10 @@
+// ignore_for_file: body_might_complete_normally_nullable
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gapopa_flutter_app/api/api_repo.dart';
 import 'package:gapopa_flutter_app/models/image_model.dart';
-import 'package:gapopa_flutter_app/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:stacked/stacked.dart';
@@ -11,18 +12,26 @@ import 'package:stacked/stacked.dart';
 final api = ApiRepo.instance;
 
 class HomeViewModel extends BaseViewModel {
-  List<Hits> tempImages = [];
+  // List<Hits> tempImages = [];
   var page = 1;
-  var perPage = 100;
+  var clength = 0;
+  var perPage = 30;
 
-  // static const _pageSize = 20;
-
-  PagingController<int, Hits> pagingController = PagingController(firstPageKey: 1);
+  PagingController<int, Hits> pagingController = PagingController(firstPageKey: 0);
 
   HomeViewModel() {
+    loadItems();
+  }
+  // Add ViewModel specific code here
+  Future<void> loadItems() async {
+    setBusy(true);
+    //Write your models loading codes here
     pagingController.addPageRequestListener((pageKey) {
       fetchPage();
     });
+    //Let other views to render again
+    setBusy(false);
+    notifyListeners();
   }
 
   void fetchPage({bool refresh = false}) async {
@@ -57,6 +66,9 @@ class HomeViewModel extends BaseViewModel {
   }
 
   newMethod(String value) async {
+    log(clength.toString());
+    log(value.length.toString());
+    // if(clength)
     try {
       final res = await api.getImages('&q=$value&image_type=photo&page=$page&per_page=$perPage');
       if (res.success!) {
@@ -83,5 +95,10 @@ class HomeViewModel extends BaseViewModel {
     } else {
       Get.changeThemeMode(ThemeMode.dark);
     }
+  }
+
+  Widget? buildCounter(BuildContext context, {required int currentLength, required bool isFocused, required int? maxLength}) {
+    clength = currentLength;
+    notifyListeners();
   }
 }
