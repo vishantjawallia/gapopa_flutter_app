@@ -8,7 +8,7 @@ jobs:
   build:
     run-on: ubuntu-latest
     
-    setps:
+    setp:
       - use: actions/checkout@v2 # Only works with v2
       - uses: subosito/flutter-action@vl
       - uses: bluefireteam/flutter-gh-pages@v7
