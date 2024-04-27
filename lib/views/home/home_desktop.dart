@@ -76,7 +76,7 @@ class _HomeDesktop extends StatelessWidget {
                   },
                   itemBuilder: (context, item, index) => BounceButton(
                     onPressed: () => Get.toNamed(ImageDetailView.routeName, arguments: item),
-                    child: ImageListTile(id: item.id, imageUrl: item.largeImageURL, views: item.views, likes: item.likes),
+                    child: ImageListTile(id: item.id, imageUrl: item.webformatURL, views: item.views, likes: item.likes),
                   ),
                 ),
               ),

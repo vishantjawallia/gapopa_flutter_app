@@ -25,7 +25,7 @@ class _ImageDetailDesktop extends StatelessWidget {
               child: CachedNetworkImage(
                 fit: BoxFit.contain,
                 filterQuality: FilterQuality.high,
-                imageUrl: viewModel.hitObj!.largeImageURL!,
+                imageUrl: viewModel.hitObj!.webformatURL!,
                 placeholder: (context, url) {
                   return Shimmer.fromColors(
                     baseColor: Colors.grey.shade500,

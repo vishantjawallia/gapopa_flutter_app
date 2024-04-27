@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: Config.APP_NAME,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       theme: Themes.light(),
       darkTheme: Themes.dark(),
       home: const HomeView(),

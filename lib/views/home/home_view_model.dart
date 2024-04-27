@@ -1,4 +1,4 @@
-// ignore_for_file: body_might_complete_normally_nullable
+// ignore_for_file: body_might_complete_normally_nullable, prefer_interpolation_to_compose_strings
 
 import 'dart:developer';
 
@@ -16,7 +16,7 @@ class HomeViewModel extends BaseViewModel {
   // List<Hits> tempImages = [];
   var page = 1;
   var clength = 0;
-  var perPage = 30;
+  var perPage = 28;
 
   PagingController<int, Hits> pagingController = PagingController(firstPageKey: 1);
 
@@ -28,11 +28,7 @@ class HomeViewModel extends BaseViewModel {
   // Add ViewModel specific code here
   Future<void> loadItems() async {
     setBusy(true);
-    //Write your models loading codes here
-    // pagingController.addPageRequestListener((pageKey) {
-    //   fetchPage();
-    // });
-    //Let other views to render again
+
     setBusy(false);
     notifyListeners();
   }
@@ -41,17 +37,20 @@ class HomeViewModel extends BaseViewModel {
     if (refresh) {
       setBusy(true);
       page = 1;
+      pagingController.refresh();
       pagingController = PagingController(firstPageKey: 1);
       await Future.delayed(const Duration(seconds: 1));
       setBusy(false);
       notifyListeners();
     }
     try {
-      final res = await api.getImages('&image_type=photo&page=$page&per_page=$perPage');
+      String query = '&image_type=photo&page=$page&per_page=$perPage';
+      if (searchController.text.isNotEmpty) query = '&q=${searchController.text}' + query;
+      final res = await api.getImages(query);
       if (res.success!) {
         page++;
-        pagingController.appendPage(res.data!.hits!, page);
         notifyListeners();
+        pagingController.appendPage(res.data!.hits!, page);
       } else {
         pagingController.appendLastPage([]);
       }
@@ -69,12 +68,10 @@ class HomeViewModel extends BaseViewModel {
   }
 
   newMethod(String value) async {
-    // if (clength == 0 && value.isNotEmpty) {
-    //   page = 1;
-    //   notifyListeners();
-    // }
-    // print(clength.toString());
-    // print(value.length.toString());
+    if (clength == 0 && value.isNotEmpty) {
+      page = 1;
+      notifyListeners();
+    }
     try {
       setBusy(true);
 
