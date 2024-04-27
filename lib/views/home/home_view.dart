@@ -1,12 +1,10 @@
 library home_view;
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gapopa_flutter_app/models/image_model.dart';
+import 'package:gapopa_flutter_app/widgets/image_list_tile.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:shimmer/shimmer.dart';
+
 import 'package:stacked/stacked.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +20,8 @@ part 'home_desktop.dart';
 class HomeView extends StatelessWidget {
   static const routeName = '/home';
 
+  const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
@@ -34,8 +34,8 @@ class HomeView extends StatelessWidget {
       builder: (context, viewModel, child) {
         return ScreenTypeLayout.builder(
           desktop: (_) => _HomeDesktop(viewModel),
-          tablet: (_) => _HomeTablet(viewModel),
-          mobile: (_) => _HomeMobile(viewModel),
+          tablet: (_) => _HomeDesktop(viewModel),
+          mobile: (_) => _HomeDesktop(viewModel),
         );
       },
     );

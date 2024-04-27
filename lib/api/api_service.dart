@@ -1,9 +1,7 @@
-import 'dart:isolate';
 
 import 'package:gapopa_flutter_app/models/image_model.dart';
 
 import '../models/base_model.dart';
-import '../models/user_model.dart';
 
 abstract class ApiService {
   /// [Get]

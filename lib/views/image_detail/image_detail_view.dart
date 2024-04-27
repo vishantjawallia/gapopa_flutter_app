@@ -1,7 +1,5 @@
 library image_detail_view;
 
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -28,7 +26,7 @@ class ImageDetailView extends StatelessWidget {
         return ScreenTypeLayout.builder(
           mobile: (_) => _ImageDetailMobile(viewModel),
           desktop: (_) => _ImageDetailDesktop(viewModel),
-          tablet: (_) => _ImageDetailMobile(viewModel),
+          tablet: (_) => _ImageDetailTablet(viewModel),
         );
       },
     );

@@ -1,9 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:gapopa_flutter_app/config/config.dart';
 import 'package:gapopa_flutter_app/models/base_model.dart';
-import 'package:gapopa_flutter_app/models/user_model.dart';
 
 import '../models/image_model.dart';
 import 'api_service.dart';
@@ -15,7 +13,6 @@ class ApiRepo implements ApiService {
 
   @override
   Future<BaseModel<ImageModel?>> getImages(query) async {
-    // try {
     final response = await ApiRepository.get('${Config.baseUrl}$query');
 
     if (response.statusCode == 200) {
@@ -26,8 +23,5 @@ class ApiRepo implements ApiService {
     } else {
       return const BaseModel(success: false, msg: "Exceptiona Occured!", data: null);
     }
-    // } catch (e) {
-    //   return BaseModel(success: false, msg: "Exceptiona Occured $e", data: null);
-    // }
   }
 }

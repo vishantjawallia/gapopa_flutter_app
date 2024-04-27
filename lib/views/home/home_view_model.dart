@@ -1,7 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gapopa_flutter_app/api/api_repo.dart';
 import 'package:gapopa_flutter_app/models/image_model.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -71,4 +67,6 @@ class HomeViewModel extends BaseViewModel {
     pagingController = PagingController(firstPageKey: 1);
     notifyListeners();
   }
+
+  void changeDarkMode() {}
 }
