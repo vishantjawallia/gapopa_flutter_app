@@ -7,6 +7,7 @@ class _HomeDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // var color = Get.isDarkMode ? Colors.white : Colors.black54;
     return Scaffold(
       body: Column(
         children: [
@@ -14,15 +15,11 @@ class _HomeDesktop extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 18.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 18.0),
                   child: Text(
                     'Pixabay Gallery',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black54,
-                    ),
+                    style: context.textTheme.titleLarge,
                   ),
                 ),
                 const SizedBox(width: 20, height: 0.0),
@@ -37,6 +34,7 @@ class _HomeDesktop extends StatelessWidget {
                     ),
                     child: TextField(
                       onChanged: viewModel.onSearchChangeses,
+                      style: context.textTheme.titleSmall,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         border: InputBorder.none,

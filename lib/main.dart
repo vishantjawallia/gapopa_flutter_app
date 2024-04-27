@@ -1,3 +1,5 @@
+// ignore_for_file: void_checks
+
 import 'package:gapopa_flutter_app/config/config.dart';
 import 'package:gapopa_flutter_app/routes.dart';
 import 'package:gapopa_flutter_app/themes/theme.dart';
@@ -20,11 +22,16 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: Config.APP_NAME,
-      theme: Themes.light,
       themeMode: ThemeMode.system,
-      darkTheme: Themes.dark,
-      home: HomeView(),
+      theme: Themes.light(),
+      darkTheme: Themes.dark(),
+      home: const HomeView(),
       getPages: routes,
     );
   }
 }
+// 
+// class MainController extends GetxController {
+// 
+// }
+// 

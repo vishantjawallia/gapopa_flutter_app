@@ -1,5 +1,10 @@
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
 import 'package:gapopa_flutter_app/api/api_repo.dart';
 import 'package:gapopa_flutter_app/models/image_model.dart';
+import 'package:gapopa_flutter_app/themes/theme.dart';
+import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:stacked/stacked.dart';
 
@@ -68,5 +73,11 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void changeDarkMode() {}
+  void changeDarkMode() {
+    if (Get.isDarkMode) {
+      Get.changeThemeMode(ThemeMode.light);
+    } else {
+      Get.changeThemeMode(ThemeMode.dark);
+    }
+  }
 }
