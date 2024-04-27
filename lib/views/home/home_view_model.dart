@@ -19,7 +19,11 @@ class HomeViewModel extends BaseViewModel {
 
   PagingController<int, Hits> pagingController = PagingController(firstPageKey: 1);
 
-  HomeViewModel() {}
+  HomeViewModel() {
+    pagingController.addPageRequestListener((pageKey) {
+      fetchPage();
+    });
+  }
 
   void fetchPage({bool refresh = false}) async {
     if (refresh) {
