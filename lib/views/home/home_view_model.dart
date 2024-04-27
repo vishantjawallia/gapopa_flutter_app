@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gapopa_flutter_app/api/api_repo.dart';
 import 'package:gapopa_flutter_app/models/image_model.dart';
 import 'package:get/get.dart';
@@ -17,18 +18,20 @@ class HomeViewModel extends BaseViewModel {
   var clength = 0;
   var perPage = 30;
 
-  PagingController<int, Hits> pagingController = PagingController(firstPageKey: 0);
+  PagingController<int, Hits> pagingController = PagingController(firstPageKey: 1);
+
+  TextEditingController searchController = TextEditingController();
 
   HomeViewModel() {
-    loadItems();
+    // loadItems();
   }
   // Add ViewModel specific code here
   Future<void> loadItems() async {
     setBusy(true);
     //Write your models loading codes here
-    pagingController.addPageRequestListener((pageKey) {
-      fetchPage();
-    });
+    // pagingController.addPageRequestListener((pageKey) {
+    //   fetchPage();
+    // });
     //Let other views to render again
     setBusy(false);
     notifyListeners();
@@ -66,15 +69,22 @@ class HomeViewModel extends BaseViewModel {
   }
 
   newMethod(String value) async {
-    log(clength.toString());
-    log(value.length.toString());
-    // if(clength)
+    // if (clength == 0 && value.isNotEmpty) {
+    //   page = 1;
+    //   notifyListeners();
+    // }
+    // print(clength.toString());
+    // print(value.length.toString());
     try {
+      setBusy(true);
+
+      await Future.delayed(const Duration(seconds: 1));
       final res = await api.getImages('&q=$value&image_type=photo&page=$page&per_page=$perPage');
+      print('&q=$value&image_type=photo&page=$page&per_page=$perPage');
+      setBusy(false);
       if (res.success!) {
-        page++;
-        pagingController.appendPage(res.data!.hits!, page);
-        notifyListeners();
+        pagingController.refresh();
+        pagingController.appendPage(res.data!.hits!, 0);
       } else {
         pagingController.appendLastPage([]);
       }

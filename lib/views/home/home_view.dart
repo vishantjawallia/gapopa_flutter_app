@@ -26,7 +26,14 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
-      onViewModelReady: (viewModel) {},
+      onViewModelReady: (viewModel) {
+        viewModel.pagingController.addPageRequestListener((pageKey) {
+          viewModel.fetchPage();
+        });
+      },
+      onDispose: (viewModel) {
+        viewModel.pagingController.dispose();
+      },
       builder: (context, viewModel, child) {
         return ScreenTypeLayout.builder(
           desktop: (_) => _HomeDesktop(viewModel),

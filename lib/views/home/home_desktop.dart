@@ -32,6 +32,7 @@ class _HomeDesktop extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     child: TextField(
+                      controller: viewModel.searchController,
                       onChanged: viewModel.onSearchChangeses,
                       style: context.textTheme.titleSmall,
                       buildCounter: viewModel.buildCounter,
