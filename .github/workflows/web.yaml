@@ -2,11 +2,11 @@ name: Gh-Pages
 
 on:
   push:
-    brnach: [ master ]
+    brnach: [master]
 
 jobs:
   build:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     
     setps:
       - uses: actions/checkout@v2 # Only works with v2
