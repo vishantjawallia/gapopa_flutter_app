@@ -9,9 +9,7 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    const MyApp(),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,13 +23,8 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: Themes.light(),
       darkTheme: Themes.dark(),
-      home: const HomeView(),
       getPages: routes,
+      initialRoute: HomeView.routeName,
     );
   }
 }
-// 
-// class MainController extends GetxController {
-// 
-// }
-// 

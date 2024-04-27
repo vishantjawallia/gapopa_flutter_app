@@ -1,3 +1,4 @@
+
 part of 'home_view.dart';
 
 class _HomeDesktop extends StatelessWidget {
@@ -7,7 +8,6 @@ class _HomeDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var color = Get.isDarkMode ? Colors.white : Colors.black54;
     return Scaffold(
       body: Column(
         children: [
@@ -33,6 +33,7 @@ class _HomeDesktop extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     child: TextField(
+                      buildCounter: viewModel.buildCounter,
                       onChanged: viewModel.onSearchChangeses,
                       style: context.textTheme.titleSmall,
                       decoration: const InputDecoration(
@@ -75,7 +76,7 @@ class _HomeDesktop extends StatelessWidget {
                   },
                   itemBuilder: (context, item, index) => BounceButton(
                     onPressed: () => Get.toNamed(ImageDetailView.routeName, arguments: item),
-                    child: ImageListTile(key: key, id: item.id, imageUrl: item.largeImageURL, views: item.views, likes: item.likes),
+                    child: ImageListTile(key: key, id: item.id, imageUrl: item.webformatURL, views: item.views, likes: item.likes),
                   ),
                 ),
               ),

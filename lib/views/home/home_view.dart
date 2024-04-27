@@ -1,5 +1,7 @@
 library home_view;
 
+import 'dart:developer';
+
 import 'package:gapopa_flutter_app/models/image_model.dart';
 import 'package:gapopa_flutter_app/widgets/image_list_tile.dart';
 import 'package:get/get.dart';
@@ -16,7 +18,6 @@ part 'home_mobile.dart';
 part 'home_tablet.dart';
 part 'home_desktop.dart';
 
-// ignore: must_be_immutable
 class HomeView extends StatelessWidget {
   static const routeName = '/home';
 
@@ -26,10 +27,12 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
+      onDispose: (viewModel) {
+        
+      },
       onViewModelReady: (viewModel) {
-        viewModel.pagingController.addPageRequestListener((pageKey) {
-          viewModel.fetchPage();
-        });
+        
+
       },
       builder: (context, viewModel, child) {
         return ScreenTypeLayout.builder(

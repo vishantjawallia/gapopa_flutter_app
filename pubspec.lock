@@ -73,22 +73,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      sha256: ba631d1c7f7bef6b729a622b7b752645a2d076dba9976925b8f25725a30e1ee6
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.8"
-  dio:
-    dependency: transitive
-    description:
-      name: dio
-      sha256: "11e40df547d418cc0c4900a9318b26304e665da6fa4755399a9ff9efd09034b5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.4.3+1"
   fake_async:
     dependency: transitive
     description:
@@ -155,14 +139,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_web3:
-    dependency: "direct main"
-    description:
-      name: flutter_web3
-      sha256: d8bdcbead96352d9e4ee58ede7965f09a541472692ad61e72b0bd317005c08e9
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.9"
   get:
     dependency: "direct main"
     description:
@@ -172,7 +148,7 @@ packages:
     source: hosted
     version: "4.6.6"
   get_it:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: get_it
       sha256: d85128a5dae4ea777324730dc65edd9c9f43155c109d5cc0a69cab74139fbac1
@@ -187,14 +163,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
-  http_mock_adapter:
-    dependency: "direct main"
-    description:
-      name: http_mock_adapter
-      sha256: "46399c78bd4a0af071978edd8c502d7aeeed73b5fb9860bca86b5ed647a63c1b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.1"
   http_parser:
     dependency: transitive
     description:
@@ -211,14 +179,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
-  js:
-    dependency: transitive
-    description:
-      name: js
-      sha256: f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.7"
   leak_tracker:
     dependency: transitive
     description:
@@ -251,14 +211,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
-  logger:
-    dependency: transitive
-    description:
-      name: logger
-      sha256: "8c94b8c219e7e50194efc8771cd0e9f10807d8d3e219af473d89b06cc2ee4e04"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.0"
   matcher:
     dependency: transitive
     description:

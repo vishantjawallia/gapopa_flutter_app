@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class Themes {
   static ThemeData light() {
     return ThemeData(
+      
       brightness: Brightness.light,
       scaffoldBackgroundColor: const Color.fromRGBO(240, 240, 240, 1),
       primaryIconTheme: const IconThemeData(color: Colors.white),
@@ -21,6 +22,7 @@ class Themes {
 
   static ThemeData dark() {
     return ThemeData(
+
       brightness: Brightness.dark,
       scaffoldBackgroundColor: Colors.black,
       primaryIconTheme: const IconThemeData(color: Colors.white),

@@ -1,9 +1,10 @@
-import 'dart:developer';
+// ignore_for_file: body_might_complete_normally_nullable
+
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:gapopa_flutter_app/api/api_repo.dart';
 import 'package:gapopa_flutter_app/models/image_model.dart';
-import 'package:gapopa_flutter_app/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:stacked/stacked.dart';
@@ -13,13 +14,10 @@ final api = ApiRepo.instance;
 class HomeViewModel extends BaseViewModel {
   List<Hits> tempImages = [];
   var page = 1;
-  var perPage = 100;
-
-  // static const _pageSize = 20;
+  int curLength = 0;
+  var perPage = 30;
 
   PagingController<int, Hits> pagingController = PagingController(firstPageKey: 1);
-
-  HomeViewModel() {}
 
   void fetchPage({bool refresh = false}) async {
     if (refresh) {
@@ -34,8 +32,8 @@ class HomeViewModel extends BaseViewModel {
       final res = await api.getImages('&image_type=photo&page=$page&per_page=$perPage');
       if (res.success!) {
         page++;
-        pagingController.appendPage(res.data!.hits!, page);
         notifyListeners();
+        pagingController.appendPage(res.data!.hits!, page);
       } else {
         pagingController.appendLastPage([]);
       }
@@ -53,16 +51,24 @@ class HomeViewModel extends BaseViewModel {
   }
 
   newMethod(String value) async {
+    if (curLength <= value.length) {
+      print("Count");
+    } else {
+      print("Cot");
+    }
     try {
-      final res = await api.getImages('&q=$value&image_type=photo&page=$page&per_page=$perPage');
+      setBusy(true);
+      await Future.delayed(const Duration(seconds: 1));
+      final res = await api.getImages('&q=$value&image_type=photo&page=1&per_page=$perPage');
+      setBusy(false);
       if (res.success!) {
-        page++;
         pagingController.appendPage(res.data!.hits!, page);
-        notifyListeners();
       } else {
         pagingController.appendLastPage([]);
       }
+      rebuildUi();
     } catch (error) {
+      setBusy(false);
       pagingController.error = error;
     }
   }
@@ -79,5 +85,15 @@ class HomeViewModel extends BaseViewModel {
     } else {
       Get.changeThemeMode(ThemeMode.dark);
     }
+  }
+
+  Widget? buildCounter(
+    BuildContext context, {
+    required int currentLength,
+    required bool isFocused,
+    required int? maxLength,
+  }) {
+    curLength = currentLength;
+    notifyListeners();
   }
 }
